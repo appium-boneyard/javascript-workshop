@@ -1,0 +1,34 @@
+{
+  "name": "appium-javaScript-workshop",
+  "description": "Basic workshop for Appium, in JavaScript",
+  "tags": [
+    "javascript",
+    "workshop",
+    "appium"
+  ],
+  "version": "1.0.0",
+  "author": "isaac@saucelabs.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appium/javascript-workshop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/appium/javascript-workshop/issues"
+  },
+  "engines": [
+    "node"
+  ],
+  "main": "./lib/main.js",
+  "directories": {
+    "lib": "./lib"
+  },
+  "dependencies": {
+    "chai": "^1.10.0",
+    "chai-as-promised": "^4.1.1",
+    "colors": "^1.0.3",
+    "q": "^1.1.2",
+    "underscore": "^1.7.0",
+    "wd": "^0.3.11",
+    "webdriverio": "^2.4.3"
+  }
+}
