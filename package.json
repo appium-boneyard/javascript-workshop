@@ -1,5 +1,5 @@
 {
-  "name": "appium-javaScript-workshop",
+  "name": "appium-javascript-workshop",
   "description": "Basic workshop for Appium, in JavaScript",
   "tags": [
     "javascript",
@@ -26,6 +26,7 @@
     "chai": "^1.10.0",
     "chai-as-promised": "^4.1.1",
     "colors": "^1.0.3",
+    "mocha": "^2.1.0",
     "q": "^1.1.2",
     "underscore": "^1.7.0",
     "wd": "^0.3.11",
