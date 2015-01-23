@@ -1,28 +1,30 @@
 "use strict";
 
-var wd = require("wd"),
-  _ = require('underscore'),
-  serverConfigs = require('../helpers/servers'),
-  setup = require('../helpers/setup');
+var wd = require('wd')
+  , _ = require('lodash')
+  , serverConfigs = require('../helpers/servers')
+  , setup = require('../helpers/setup')
+  , apps = require('../helpers/apps');
 
 describe("ios native", function () {
-  this.timeout(300000);
   var driver;
   var allPassed = true;
 
-  before(function (done) { 
-    var desired = _.extend(require('../helpers/caps').ios81, {
-      app: 'http://appium.github.io/appium/assets/TestApp7.1.app.zip',
-      name: 'Appium workshop native test'
+  before(function (done) {
+    var desired = JSON.parse(process.env.DESIRED || '{}');
+    desired = _.extend(desired, {
+      app: apps.iosTestApp,
+      name: 'Appium workshop native test',
+      tags: ['appium', 'js', 'workshop', 'native', 'ios']
     });
-    driver = setup(desired); 
+    driver = setup();
     driver
       .init(desired)
       .nodeify(done);
   });
 
   afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');  
+    allPassed = allPassed && (this.currentTest.state === 'passed');
     done();
   });
 
@@ -32,7 +34,7 @@ describe("ios native", function () {
       .sauceJobStatus(allPassed)
       .nodeify(done);
   });
-    
+
   it('should be able to do stuff', function (done) {
     driver
       .waitForElementByAccessibilityId('TextField1')

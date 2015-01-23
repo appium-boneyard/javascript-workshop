@@ -1,22 +1,24 @@
 "use strict";
 
-var wd = require("wd")
-  , _ = require('underscore')
+var wd = require('wd')
+  , _ = require('lodash')
   , serverConfigs = require('../helpers/servers')
-  , setup = require('../helpers/setup');
+  , setup = require('../helpers/setup')
+  , apps = require('../helpers/apps');
 
 describe("ios hybrid", function () {
-  this.timeout(300000);
   var driver;
   var allPassed = true;
 
   // set up the driver object before the tests run
-  before(function (done) { 
-    var desired = _.extend(require('../helpers/caps').ios81, {
-      app: 'https://appium.s3.amazonaws.com/HelloGappium.app.zip',
-      name: 'Appium workshop hybrid test'
+  before(function (done) {
+    var desired = JSON.parse(process.env.DESIRED || '{}');
+    desired = _.extend(desired, {
+      app: apps.iosGappiumApp,
+      name: 'Appium workshop hybrid test',
+      tags: ['appium', 'js', 'workshop', 'ios', 'hybrid']
     });
-    driver = setup(desired); 
+    driver = setup();
     driver
       .init(desired)
       .nodeify(done);
@@ -24,27 +26,33 @@ describe("ios hybrid", function () {
 
   // after each test, re-evaluate whether the whole thing passed or failed
   afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');  
+    allPassed = allPassed && (this.currentTest.state === 'passed');
     done();
   });
 
-  // after all the tests, quit and update Sauce
+  // after all the tests, quit and update Sauce (if necessary)
   after(function(done) {
-    driver
-      .quit()
-      .sauceJobStatus(allPassed)
-      .nodeify(done);
+    if (process.env.SAUCE) {
+      driver
+        .quit()
+        .sauceJobStatus(allPassed)
+        .nodeify(done);
+      } else {
+        driver
+          .quit()
+          .nodeify(done);
+      }
   });
 
 
   // test sending and retrieving text
   // the app is a PhoneGap/Cordova app, which takes some time to load,
-  // so there are some timing issues here  
+  // so there are some timing issues here
   it('should send and receive text', function (done) {
     driver
       // switch into a webview
       .setImplicitWaitTimeout(600000)
-      .waitForElementByClassName('UIAWebView')  
+      .waitForElementByClassName('UIAWebView')
         .click() // bide our time
       .contexts()
         .then(function (ctxs) {

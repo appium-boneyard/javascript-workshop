@@ -1,23 +1,23 @@
 "use strict";
 
 var wd = require('wd')
-  , _ = require('underscore')
+  , _ = require('lodash')
   , serverConfigs = require('../helpers/servers')
   , setup = require('../helpers/setup');
 
 describe('ios mobile web', function () {
-  this.timeout(300000);
   var driver;
   var allPassed = true;
 
   // set up the driver object before the tests run
-  before(function (done) { 
-    var desired = _.extend(require('../helpers/caps').ios81, {
+  before(function (done) {
+    var desired = JSON.parse(process.env.DESIRED || '{}');
+    desired = _.extend(desired, {
       browserName: 'safari',
       name: 'Appium workshop mobile web test',
-      tags: ['appium', 'js', 'workshop']
+      tags: ['appium', 'js', 'workshop', 'ios', 'web']
     });
-    driver = setup(desired); 
+    driver = setup();
     driver
       .init(desired)
       .nodeify(done);
@@ -25,7 +25,7 @@ describe('ios mobile web', function () {
 
   // after each test, re-evaluate whether the whole thing passed or failed
   afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');  
+    allPassed = allPassed && (this.currentTest.state === 'passed');
     done();
   });
 
