@@ -34,12 +34,9 @@
     "grunt-env": "^0.4.2",
     "grunt-mocha-appium": "^0.4.0",
     "grunt-simple-mocha": "^0.4.0",
-    "gulp": "^3.8.10",
-    "gulp-mocha": "^2.0.0",
     "lodash": "^2.4.1",
     "mocha": "^2.1.0",
     "q": "^1.1.2",
-    "wd": "^0.3.11",
-    "webdriverio": "^2.4.3"
+    "wd": "^0.3.11"
   }
 }
