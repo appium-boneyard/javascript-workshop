@@ -1,3 +1,5 @@
+'use strict';
+
 if (process.env.SAUCE) {
   module.exports = {
     iosTestApp: "https://appium.s3.amazonaws.com/TestApp7.1.app.zip",
@@ -9,7 +11,7 @@ if (process.env.SAUCE) {
 
     iosWebviewAppLocal: "http://localhost:3000/WebViewApp7.1.app.zip",
     androidApiDemosLocal: "http://localhost:3000/ApiDemos-debug.apk"
-  }
+  };
 } else {
   module.exports = {
     iosTestApp: "sample-code/apps/TestApp/build/Release-iphonesimulator/TestApp.app",
@@ -18,5 +20,5 @@ if (process.env.SAUCE) {
     androidApiDemos: "sample-code/apps/ApiDemos/bin/ApiDemos-debug.apk",
     selendroidTestApp: "sample-code/apps/selendroid-test-app.apk",
     iosGappiumApp: '/Users/isaac/code/javascript-workshop/apps/HelloGappium.app.zip'
-  }
+  };
 }

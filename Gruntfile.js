@@ -9,24 +9,23 @@ var gruntConfig = {
     // dynamically filled
   },
   simplemocha: {
-    sauce: {
-      options: {
-        timeout: 90000,
-        reporter: 'spec'
-      },
-      src: ['tests/functional/**/*-specs.js']
-    },
     ios: {
       options: {
-        timeout: 90000,
+        timeout: 120000,
         reporter: 'spec'
       },
       src: ['tests/functional/ios/*-specs.js']
     },
+    android: {
+      options: {
+        timeout: 120000,
+        reporter: 'spec'
+      },
+      src: ['tests/functional/android/*-specs.js']
+    },
   },
   concurrent: {
     // dynamically filled
-    'test-sauce': [],
     'test-ios': [],
     'test-android': [],
   },
@@ -38,10 +37,7 @@ var gruntConfig = {
       src: 'Gruntfile.js'
     },
     test: {
-      options: {
-          jshintrc: 'test/.jshintrc'
-      },
-      src: ['test/**/*.js']
+      src: ['tests/**/*.js']
     },
 },
 };
@@ -51,8 +47,7 @@ _.each(['ios', 'android'], function (system) {
     gruntConfig.env[key] = {
       DESIRED: JSON.stringify(desired)
     };
-    gruntConfig.concurrent['test-sauce'].push('test:sauce:' + key);
-    gruntConfig.concurrent['test-ios'].push('test:' + key);
+    gruntConfig.concurrent['test-ios'].push('test:' + system + ':' + key);
   });
 });
 
@@ -67,12 +62,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('default', ['test:sauce:7.1']);
-  grunt.registerTask('ios', ['test:ios']);
 
   _.each(['ios', 'android'], function (system) {
     _(desireds[system]).each(function(desired, key) {
-      grunt.registerTask('test:sauce:' + key, ['env:' + key, 'simplemocha:sauce']);
-      grunt.registerTask('test:' + key, ['env:' + key, 'simplemocha:' + system]);
+      grunt.registerTask('test:' + system + ':' + key, ['env:' + key, 'simplemocha:' + system]);
     });
   });
 
@@ -80,4 +73,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test:ios:parallel', ['concurrent:test-ios']);
   grunt.registerTask('test:android:parallel', ['concurrent:test-android']);
+  grunt.registerTask('test:all:parallel', ['concurrent:test-ios', 'concurrent:test-android']);
 };

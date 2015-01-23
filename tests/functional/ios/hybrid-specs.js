@@ -1,8 +1,7 @@
-"use strict";
+/*global describe, it, before, after, afterEach */
+'use strict';
 
-var wd = require('wd')
-  , _ = require('lodash')
-  , serverConfigs = require('../helpers/servers')
+var _ = require('lodash')
   , setup = require('../helpers/setup')
   , apps = require('../helpers/apps');
 

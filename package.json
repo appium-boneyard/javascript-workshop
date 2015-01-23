@@ -20,7 +20,7 @@
   ],
   "main": "./lib/main.js",
   "directories": {
-    "lib": "./lib"
+    "tests": "./tests"
   },
   "dependencies": {
     "chai": "^1.10.0",

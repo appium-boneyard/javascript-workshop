@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   ios: {
     '7.1': {
@@ -48,4 +50,4 @@ module.exports = {
   //   deviceName: 'Android Emulator',
   //   app: undefined // will be set later
   // }
-}
+};
