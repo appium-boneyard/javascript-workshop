@@ -36,11 +36,11 @@ describe("ios hybrid", function () {
         .quit()
         .sauceJobStatus(allPassed)
         .nodeify(done);
-      } else {
-        driver
-          .quit()
-          .nodeify(done);
-      }
+    } else {
+      driver
+        .quit()
+        .nodeify(done);
+    }
   });
 
 

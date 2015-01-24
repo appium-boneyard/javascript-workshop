@@ -47,9 +47,15 @@ _.each(['ios', 'android'], function (system) {
     gruntConfig.env[key] = {
       DESIRED: JSON.stringify(desired)
     };
-    gruntConfig.concurrent['test-ios'].push('test:' + system + ':' + key);
+    gruntConfig.concurrent['test-' + system].push('test:' + system + ':' + key);
   });
 });
+
+
+// by default, use Sauce Labs
+if (process.env.SAUCE === undefined) {
+  process.env.SAUCE = true;
+}
 
 module.exports = function(grunt) {
   // Project configuration.

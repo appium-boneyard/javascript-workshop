@@ -28,10 +28,16 @@ describe("ios native", function () {
   });
 
   after(function(done) {
-    driver
-      .quit()
-      .sauceJobStatus(allPassed)
-      .nodeify(done);
+    if (process.env.SAUCE) {
+      driver
+        .quit()
+        .sauceJobStatus(allPassed)
+        .nodeify(done);
+    } else {
+      driver
+        .quit()
+        .nodeify(done);
+    }
   });
 
   it('should be able to do stuff', function (done) {

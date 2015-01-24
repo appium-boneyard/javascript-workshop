@@ -24,16 +24,21 @@ describe('ios mobile web', function () {
 
   // after each test, re-evaluate whether the whole thing passed or failed
   afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');
-    done();
+
   });
 
   // after all the tests, quit and update Sauce
   after(function(done) {
-    driver
-      .quit()
-      .sauceJobStatus(allPassed)
-      .nodeify(done);
+    if (process.env.SAUCE) {
+      driver
+        .quit()
+        .sauceJobStatus(allPassed)
+        .nodeify(done);
+    } else {
+      driver
+        .quit()
+        .nodeify(done);
+    }
   });
 
 

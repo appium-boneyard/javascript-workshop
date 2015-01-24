@@ -1,7 +1,6 @@
 'use strict';
 
-var wd = require('wd')
-  , serverConfigs = require('../helpers/servers');
+var wd = require('wd');
 
 
 // set up chai so our tests run well
@@ -12,10 +11,26 @@ chai.use(chaiAsPromised);
 chai.should();
 chaiAsPromised.transferPromiseness = wd.transferPromiseness;
 
+var SAUCE_USERNAME = process.env.SAUCE_USERNAME
+  , SAUCE_ACCESS_KEY = process.env.SAUCE_ACCESS_KEY;
+
+var servers = {
+  local: {
+    host: 'localhost',
+    port: 4723
+  },
+  sauce: {
+    host: 'ondemand.saucelabs.com',
+    port: 80,
+    username: SAUCE_USERNAME,
+    password: SAUCE_ACCESS_KEY
+  }
+};
+
 // make sure we have the right environment variables for Sauce
 if (process.env.SAUCE) {
   // checking sauce credentials
-  if(!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY){
+  if(!SAUCE_USERNAME || !SAUCE_ACCESS_KEY){
     console.warn(
       '\nPlease configure your sauce credential:\n\n' +
       'export SAUCE_USERNAME=<SAUCE_USERNAME>\n' +
@@ -27,7 +42,7 @@ if (process.env.SAUCE) {
 
 
 module.exports = function () {
-  var driver = wd.promiseChainRemote(process.env.SAUCE ? serverConfigs.sauce : serverConfigs.local);
+  var driver = wd.promiseChainRemote(process.env.SAUCE ? servers.sauce : servers.local);
 
   if (process.env.VERBOSE){
     // optional logging
