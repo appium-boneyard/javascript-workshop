@@ -10,7 +10,7 @@ describe("ios native", function () {
   var allPassed = true;
 
   before(function (done) {
-    var desired = JSON.parse(process.env.DESIRED || '{}');
+    var desired = JSON.parse(process.env.DESIRED);
     desired = _.extend(desired, {
       app: apps.iosTestApp,
       name: 'Appium workshop native test',

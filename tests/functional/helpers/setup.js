@@ -27,6 +27,13 @@ var servers = {
   }
 };
 
+
+// by default, use Sauce Labs
+// if you don't want Sauce, use SAUCE=false
+if (process.env.SAUCE === undefined) {
+  process.env.SAUCE = true;
+}
+
 // make sure we have the right environment variables for Sauce
 if (process.env.SAUCE) {
   // checking sauce credentials
@@ -41,6 +48,14 @@ if (process.env.SAUCE) {
 }
 
 
+if (process.env.DEVICE && !process.env.DESIRED) {
+  // running from mocha, need to populate the correct caps
+  var device = process.env.DEVICE.split(':');
+  var caps = require('../helpers/caps')[device[0]][device[1]];
+  process.env.DESIRED = JSON.stringify(caps);
+}
+
+
 module.exports = function () {
   var driver = wd.promiseChainRemote(process.env.SAUCE ? servers.sauce : servers.local);
 
@@ -51,6 +66,9 @@ module.exports = function () {
     });
     driver.on('command', function(meth, path, data) {
       console.log(' > ' + meth.yellow, path.grey, data || '');
+    });
+    driver.on('http', function(meth, path, data) {
+      console.log(' > ' + meth.magenta, path, (data || '').grey);
     });
   }
   return driver;

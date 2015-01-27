@@ -15,7 +15,7 @@ module.exports = {
       appiumVersion: '1.3.4',
       platformName: 'iOS',
       platformVersion: '8.0',
-      deviceName: 'iPhone Simulator',
+      deviceName: 'iPhone 5s',
       app: undefined // will be set later
     },
   },

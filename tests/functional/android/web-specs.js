@@ -10,7 +10,7 @@ describe('android mobile web', function () {
 
   // set up the driver object before the tests run
   before(function (done) {
-    var desired = JSON.parse(process.env.DESIRED || JSON.stringify(require('../helpers/caps').android['4.4']));
+    var desired = JSON.parse(process.env.DESIRED);
     desired = _.extend(desired, {
       browserName: 'Browser',
       name: 'Appium workshop mobile web test',

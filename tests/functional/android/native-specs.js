@@ -10,7 +10,7 @@ describe("android native", function () {
   var allPassed = true;
 
   before(function (done) {
-    var desired = JSON.parse(process.env.DESIRED || JSON.stringify(require('../helpers/caps').android['4.4']));
+    var desired = JSON.parse(process.env.DESIRED);
     desired = _.extend(desired, {
       app: apps.androidContactManager,
       browserName: '',
@@ -36,7 +36,9 @@ describe("android native", function () {
         .nodeify(done);
     } else {
       driver
-        .quit()
+        .quit(function (err) {
+          console.log(err);
+        })
         .nodeify(done);
     }
   });

@@ -11,7 +11,7 @@ describe("ios hybrid", function () {
 
   // set up the driver object before the tests run
   before(function (done) {
-    var desired = JSON.parse(process.env.DESIRED || '{}');
+    var desired = JSON.parse(process.env.DESIRED);
     desired = _.extend(desired, {
       app: apps.iosGappiumApp,
       name: 'Appium workshop hybrid test',
