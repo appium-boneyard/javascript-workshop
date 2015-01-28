@@ -3,12 +3,10 @@
 
 var _ = require('lodash')
   , setup = require('../helpers/setup')
-  , apps = require('../helpers/apps');
+  , apps = require('../helpers/apps')
+  , utils = require('../helpers/utils');
 
 describe("ios native", function () {
-  var driver;
-  var allPassed = true;
-
   before(function (done) {
     var desired = JSON.parse(process.env.DESIRED);
     desired = _.extend(desired, {
@@ -16,32 +14,20 @@ describe("ios native", function () {
       name: 'Appium workshop native test',
       tags: ['appium', 'js', 'workshop', 'native', 'ios']
     });
-    driver = setup();
-    driver
+    this.allPassed = true;
+    this.driver = setup();
+    this.driver
       .init(desired)
       .nodeify(done);
   });
 
-  afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');
-    done();
-  });
+  afterEach(utils.afterEach);
 
-  after(function(done) {
-    if (process.env.SAUCE) {
-      driver
-        .quit()
-        .sauceJobStatus(allPassed)
-        .nodeify(done);
-    } else {
-      driver
-        .quit()
-        .nodeify(done);
-    }
-  });
+  after(utils.after);
+
 
   it('should be able to do stuff', function (done) {
-    driver
+    this.driver
       .waitForElementByAccessibilityId('TextField1')
         .sendKeys('10')
       .waitForElementByAccessibilityId('TextField2')

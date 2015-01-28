@@ -3,12 +3,10 @@
 
 var _ = require('lodash')
   , setup = require('../helpers/setup')
-  , apps = require('../helpers/apps');
+  , apps = require('../helpers/apps')
+  , utils = require('../helpers/utils');
 
 describe("ios hybrid", function () {
-  var driver;
-  var allPassed = true;
-
   // set up the driver object before the tests run
   before(function (done) {
     var desired = JSON.parse(process.env.DESIRED);
@@ -17,38 +15,23 @@ describe("ios hybrid", function () {
       name: 'Appium workshop hybrid test',
       tags: ['appium', 'js', 'workshop', 'ios', 'hybrid']
     });
-    driver = setup();
-    driver
+    this.allPassed = true;
+    this.driver = setup();
+    this.driver
       .init(desired)
       .nodeify(done);
   });
 
-  // after each test, re-evaluate whether the whole thing passed or failed
-  afterEach(function(done) {
-    allPassed = allPassed && (this.currentTest.state === 'passed');
-    done();
-  });
+  afterEach(utils.afterEach);
 
-  // after all the tests, quit and update Sauce (if necessary)
-  after(function(done) {
-    if (process.env.SAUCE) {
-      driver
-        .quit()
-        .sauceJobStatus(allPassed)
-        .nodeify(done);
-    } else {
-      driver
-        .quit()
-        .nodeify(done);
-    }
-  });
+  after(utils.after);
 
 
   // test sending and retrieving text
   // the app is a PhoneGap/Cordova app, which takes some time to load,
   // so there are some timing issues here
   it('should send and receive text', function (done) {
-    driver
+    this.driver
       // switch into a webview
       .setImplicitWaitTimeout(600000)
       .waitForElementByClassName('UIAWebView')
@@ -56,7 +39,7 @@ describe("ios hybrid", function () {
       .contexts()
         .then(function (ctxs) {
           // sometimes the contexts haven't properly loaded
-          return ctxs.length === 1 ? driver.contexts() : ctxs;
+          return ctxs.length === 1 ? this.driver.contexts() : ctxs;
         })
         .should.eventually.have.length(2)
       .context('WEBVIEW')
