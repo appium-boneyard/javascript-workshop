@@ -2,25 +2,17 @@
 'use strict';
 
 var _ = require('lodash')
-  , setup = require('../helpers/setup')
   , apps = require('../helpers/apps')
   , utils = require('../helpers/utils');
 
+
 describe("android native", function () {
-  before(function (done) {
-    var desired = JSON.parse(process.env.DESIRED);
-    desired = _.extend(desired, {
-      app: apps.androidContactManager,
-      browserName: '',
-      name: 'Appium workshop native test',
-      tags: ['appium', 'js', 'workshop', 'native', 'android']
-    });
-    this.allPassed = true;
-    this.driver = setup();
-    this.driver
-      .init(desired)
-      .nodeify(done);
-  });
+  before(utils.before({
+    app: apps.androidContactManager,
+    browserName: '',
+    name: 'Appium workshop native test',
+    tags: ['appium', 'js', 'workshop', 'native', 'android']
+  }));
 
   afterEach(utils.afterEach);
 

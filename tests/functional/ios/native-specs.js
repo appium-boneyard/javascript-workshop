@@ -2,24 +2,16 @@
 'use strict';
 
 var _ = require('lodash')
-  , setup = require('../helpers/setup')
   , apps = require('../helpers/apps')
   , utils = require('../helpers/utils');
 
+
 describe("ios native", function () {
-  before(function (done) {
-    var desired = JSON.parse(process.env.DESIRED);
-    desired = _.extend(desired, {
-      app: apps.iosTestApp,
-      name: 'Appium workshop native test',
-      tags: ['appium', 'js', 'workshop', 'native', 'ios']
-    });
-    this.allPassed = true;
-    this.driver = setup();
-    this.driver
-      .init(desired)
-      .nodeify(done);
-  });
+  before(utils.before({
+    app: apps.iosTestApp,
+    name: 'Appium workshop native test',
+    tags: ['appium', 'js', 'workshop', 'native', 'ios']
+  }));
 
   afterEach(utils.afterEach);
 

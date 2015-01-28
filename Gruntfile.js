@@ -2,6 +2,14 @@
 
 var _ = require('lodash');
 
+
+// by default, use Sauce Labs
+// if you don't want Sauce, use SAUCE=false
+if (process.env.SAUCE === undefined) {
+  process.env.SAUCE = true;
+}
+
+
 var desireds = require('./tests/functional/helpers/caps');
 
 var gruntConfig = {
