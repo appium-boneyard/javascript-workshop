@@ -57,7 +57,7 @@ module.exports.getDesiredCapabilities = function (extras) {
   }
 
   process.env.DEVICE = desired.platformName;
-  return _.extend(desired, extras)
+  return _.extend(desired, extras);
 };
 
 module.exports.getDriver = function (desired, done) {

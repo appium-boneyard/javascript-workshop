@@ -65,7 +65,7 @@ module.exports = function(grunt) {
 
   var tests = [];
   _.each(['ios', 'android'], function (system) {
-    var systemTests = []
+    var systemTests = [];
     _(desireds[system]).each(function(desired, key) {
       // put together environments for each test
       gruntConfig.env[key] = {

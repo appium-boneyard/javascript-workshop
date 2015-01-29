@@ -1,3 +1,5 @@
+'use strict';
+
 var setup = require('./setup');
 
 module.exports.before = function (extraCaps) {

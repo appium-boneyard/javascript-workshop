@@ -1,5 +1,6 @@
-// expects `this.driver` to exist
+'use strict';
 
+// expects `this.driver` to exist
 module.exports.textTest = function (done) {
   this.driver
     .get('http://saucelabs.com/test/guinea-pig')

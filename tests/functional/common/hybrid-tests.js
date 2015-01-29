@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports.textTest = function (done) {
   // decide what kind of webview to wait for
   var webviewClassName = 'UIAWebView';
@@ -33,4 +35,4 @@ module.exports.textTest = function (done) {
       .click()
     .sleep(2000)
     .nodeify(done);
-  }
+};

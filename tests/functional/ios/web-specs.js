@@ -1,8 +1,7 @@
 /*global describe, it, before, after, afterEach */
 'use strict';
 
-var _ = require('lodash')
-  , tests = require('../common/web-tests')
+var tests = require('../common/web-tests')
   , utils = require('../helpers/utils');
 
 
