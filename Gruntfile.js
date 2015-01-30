@@ -49,6 +49,15 @@ var gruntConfig = {
       src: ['tests/**/*.js']
     },
   },
+  watch: {
+    js: {
+      files: ['Gruntfile.js', 'tests/**/*.js'],
+      tasks: ['jshint'],
+      options: {
+        spawn: false,
+      },
+    },
+  },
 };
 
 
@@ -62,6 +71,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   var tests = [];
   _.each(['ios', 'android'], function (system) {
