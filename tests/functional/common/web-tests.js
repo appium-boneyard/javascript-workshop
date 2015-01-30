@@ -14,5 +14,4 @@ module.exports.textTest = function (done) {
     .elementById('your_comments')
       .text().should.eventually.contain('This is an awesome and super-interesting comment')
     .nodeify(done);
-
 };
