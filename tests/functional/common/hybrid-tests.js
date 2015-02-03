@@ -16,7 +16,7 @@ module.exports.textTest = function (done) {
       .then(function (ctxs) {
         // sometimes the contexts haven't properly loaded
         return ctxs.length === 1 ? this.driver.contexts() : ctxs;
-      })
+      }.bind(this))
       .should.eventually.have.length(2)
     .context('WEBVIEW')
     .elementByCss('.search-key')
