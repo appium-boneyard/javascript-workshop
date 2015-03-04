@@ -14,14 +14,14 @@ grunt
 
 ## Setting up tests
 
-The main thing to do in order to set up tests is to get the desired capabilities correct. 
-These live in `tests/functional/helpers/caps.js`. This is a JavaScript hash object that 
+The main thing to do in order to set up tests is to get the desired capabilities correct.
+These live in `tests/functional/helpers/caps.js`. This is a JavaScript hash object that
 can be populated as you see fit.
 
 
 ## Running the tests
 
-There are two ways to run the tests. Either directly with [`mocha`](http://mochajs.org/), 
+There are two ways to run the tests. Either directly with [`mocha`](http://mochajs.org/),
 or using [`grunt`](http://gruntjs.com/). The latter is preferred.
 
 Tests will, by default, run on [Sauce Labs](http://saucelabs.com), for which you
@@ -31,7 +31,7 @@ will need a username and access key set as the environment variables
 
 ### Mocha
 
-With `mocha`, you can use any options you feel like. But you will need to specify a 
+With `mocha`, you can use any options you feel like. But you will need to specify a
 `DEVICE`, which is a valid key into the `caps.js` file. For instance, you can run:
 
 ```shell
@@ -78,11 +78,11 @@ capabilities
       "deviceName": "iPhone Simulator",
       "app": null
     },
-    "8.0": {
+    "8.1": {
       "browserName": null,
       "appiumVersion": "1.3.4",
       "platformName": "iOS",
-      "platformVersion": "8.0",
+      "platformVersion": "8.1",
       "deviceName": "iPhone 5s",
       "app": null
     }
@@ -112,7 +112,7 @@ There will be available the following individual tasks
 
 ```shell
 grunt test:ios:7.1
-grunt test:ios:8.0
+grunt test:ios:8.1
 grunt test:android:4.4
 grunt test:android:4.4c
 ```
