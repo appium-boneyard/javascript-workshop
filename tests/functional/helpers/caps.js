@@ -1,10 +1,11 @@
 'use strict';
+var appiumVer = "1.3.6";
 
 module.exports = {
   ios: {
     '7.1': {
       browserName: undefined,
-      appiumVersion: '1.3.6-beta',
+      appiumVersion: appiumVer,
       platformName: 'iOS',
       platformVersion: '7.1',
       deviceName: 'iPhone Simulator',
@@ -12,7 +13,7 @@ module.exports = {
     },
     '8.1': {
       browserName: '',
-      appiumVersion: '1.3.6-beta',
+      appiumVersion: appiumVer,
       platformName: 'iOS',
       platformVersion: '8.1',
       deviceName: 'iPhone 5s',
@@ -23,7 +24,7 @@ module.exports = {
   android: {
     '4.4': {
       browserName: 'Browser',
-      appiumVersion: '1.3.6-beta',
+      appiumVersion: appiumVer,
       platformName: 'Android',
       platformVersion: '4.4',
       deviceName: 'Android Emulator',
@@ -31,7 +32,7 @@ module.exports = {
     },
     '4.4c': {
       browserName: 'Chrome',
-      appiumVersion: '1.3.6-beta',
+      appiumVersion: appiumVer,
       platformName: 'Android',
       platformVersion: '4.4',
       deviceName: 'Android Emulator',
