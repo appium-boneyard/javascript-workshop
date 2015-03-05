@@ -33,6 +33,6 @@ module.exports.textTest = function (done) {
         return options[3];
       })
       .click()
-    .sleep(2000)
+    .sleep(2000)  // sleep simply for visual effect
     .nodeify(done);
 };

@@ -9,7 +9,7 @@ describe("android native", function () {
   before(utils.before({
     app: apps.androidContactManager,
     browserName: '',
-    name: 'Appium workshop native test',
+    name: 'Appium workshop android native test',
     tags: ['appium', 'js', 'workshop', 'native', 'android']
   }));
 

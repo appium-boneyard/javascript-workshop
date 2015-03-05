@@ -8,7 +8,7 @@ var tests = require('../common/web-tests')
 describe('ios mobile web', function () {
   before(utils.before({
     browserName: 'safari',
-    name: 'Appium workshop mobile web test',
+    name: 'Appium workshop ios mobile web test',
     tags: ['appium', 'js', 'workshop', 'ios', 'web']
   }));
 

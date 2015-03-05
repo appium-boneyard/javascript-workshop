@@ -10,7 +10,7 @@ describe("android hybrid", function () {
   before(utils.before({
     app: apps.androidGappiumApp,
     browserName: '',
-    name: 'Appium workshop hybrid test',
+    name: 'Appium workshop android hybrid test',
     tags: ['appium', 'js', 'workshop', 'android', 'hybrid']
   }));
 

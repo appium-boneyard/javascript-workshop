@@ -9,7 +9,7 @@ var apps = require('../helpers/apps')
 describe("ios hybrid", function () {
   before(utils.before({
     app: apps.iosGappiumApp,
-    name: 'Appium workshop hybrid test',
+    name: 'Appium workshop ios hybrid test',
     tags: ['appium', 'js', 'workshop', 'ios', 'hybrid']
   }));
 

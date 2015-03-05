@@ -8,7 +8,7 @@ var apps = require('../helpers/apps')
 describe("ios native", function () {
   before(utils.before({
     app: apps.iosTestApp,
-    name: 'Appium workshop native test',
+    name: 'Appium workshop ios native test',
     tags: ['appium', 'js', 'workshop', 'native', 'ios']
   }));
 
