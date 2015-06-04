@@ -22,11 +22,11 @@ module.exports = {
   },
 
   android: {
-    '4.4': {
+    '5.0': {
       browserName: 'Browser',
       appiumVersion: appiumVer,
       platformName: 'Android',
-      platformVersion: '4.4',
+      platformVersion: '5.0',
       deviceName: 'Android Emulator',
       app: undefined
     },
