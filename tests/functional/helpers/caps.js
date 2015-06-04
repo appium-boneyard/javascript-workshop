@@ -30,8 +30,8 @@ module.exports = {
       deviceName: 'Android Emulator',
       app: undefined
     },
-    '4.4c': {
-      browserName: 'Chrome',
+    '4.4': {
+      browserName: 'Browser',
       appiumVersion: appiumVer,
       platformName: 'Android',
       platformVersion: '4.4',
