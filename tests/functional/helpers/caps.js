@@ -1,5 +1,5 @@
 'use strict';
-var appiumVer = "1.3.6";
+var appiumVer = "1.4.0";
 
 module.exports = {
   ios: {
